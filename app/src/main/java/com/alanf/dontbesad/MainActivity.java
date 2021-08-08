@@ -1,7 +1,9 @@
 package com.alanf.dontbesad;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -11,9 +13,13 @@ import android.widget.Toast;
 
 import com.alanf.dontbesad.databinding.ActivityMainBinding;
 
+import java.util.logging.Logger;
+
 public class MainActivity extends Activity {
     private ActivityMainBinding binding;
     private ImageButton settings,start,sthap,addimage;
+    private SharedPreferences prefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +56,13 @@ public class MainActivity extends Activity {
                 openFile();
             }
         });
+        prefs = getSharedPreferences("prefs",0);
+        if (prefs.getBoolean("fr", false)) {
+            Toast.makeText(getApplicationContext(), "Abierto anteriormente", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Primera vez abierto", Toast.LENGTH_SHORT).show();
+            prefs.edit().putBoolean("fr",true).apply();
+        }
     }
     public void openFile(){
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
