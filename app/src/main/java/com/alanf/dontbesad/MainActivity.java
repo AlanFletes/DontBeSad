@@ -59,6 +59,7 @@ public class MainActivity extends Activity {
         prefs = getSharedPreferences("prefs",0);
         if (prefs.getBoolean("fr", false)) {
             Toast.makeText(getApplicationContext(), "Abierto anteriormente", Toast.LENGTH_SHORT).show();
+            prefs.edit().clear().apply();
         } else {
             Toast.makeText(getApplicationContext(), "Primera vez abierto", Toast.LENGTH_SHORT).show();
             prefs.edit().putBoolean("fr",true).apply();
