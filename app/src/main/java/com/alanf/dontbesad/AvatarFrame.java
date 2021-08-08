@@ -16,7 +16,6 @@ public class AvatarFrame extends Activity {
         super.onCreate(savedInstanceState);
 
         binding = ActivityAvatarFrameBinding.inflate(getLayoutInflater());
-        Toast.makeText(getApplicationContext(),"Toast!",Toast.LENGTH_SHORT).show();
         setContentView(binding.getRoot());
     }
 }
