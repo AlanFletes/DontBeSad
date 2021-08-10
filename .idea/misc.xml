@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Jaykoneko/StudioProjects/DontBeSad/app/src/main/res/layout/activity_avatar_frame.xml" value="0.4506578947368421" />
+        <entry key="..\:/Users/Jaykoneko/StudioProjects/DontBeSad/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Users/Jaykoneko/StudioProjects/DontBeSad/app/src/main/res/layout/activity_settings.xml" value="0.4506578947368421" />
+        <entry key="..\:/Users/Jaykoneko/StudioProjects/DontBeSad/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.7464285714285714" />
+        <entry key="..\:/Users/Jaykoneko/StudioProjects/DontBeSad/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.7464285714285714" />
       </map>
     </option>
   </component>
