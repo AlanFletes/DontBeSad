@@ -2,12 +2,17 @@ package com.alanf.dontbesad;
 
 import android.content.SharedPreferences;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 public class AppManager {
     private boolean muted, switching;
     private static AppManager instance;
-    private int objs;
+    private int objs, font,avatar;
     private int relojes[][];
     private SharedPreferences prefs;
+    private Set<String> frases;
 
     private AppManager(){
         relojes = new int[2][3];
@@ -114,5 +119,38 @@ public class AppManager {
     }
     public SharedPreferences getPrefs(){
         return this.prefs;
+    }
+    public String[] recoverFrases(){
+        frases = prefs.getStringSet("frases", new HashSet<String>());
+        return Arrays.copyOf(frases.toArray(), frases.toArray().length, String[].class);
+    }
+    public int getFont(){
+        return this.font;
+    }
+    public void setFont(int font){
+        this.font=font;
+    }
+    public int getAvatar(){
+        return this.avatar;
+    }
+    public void setAvatar(int avatar){
+        this.avatar=avatar;
+    }
+    public void addFrase(String frase){
+        Set<String> set = new HashSet<String>();
+        for(String s : frases){
+            set.add(s);
+        }
+        set.add(frase);
+        prefs.edit().putStringSet("frases",set).apply();
+    }
+    public void deleteFrase(String frase){
+        Set<String> set = new HashSet<String>();
+        for(String f : frases){
+            if(!f.equals(frase)){
+                set.add(f);
+            }
+        }
+        prefs.edit().putStringSet("frases",set).apply();
     }
 }

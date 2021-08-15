@@ -15,7 +15,7 @@
 
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/txtFrase"
             android:layout_width="142dp"
             android:layout_height="68dp"
             android:text="Puedes configurar la app en la sección de ajustes!"
@@ -26,7 +26,7 @@
             app:layout_constraintVertical_bias="0.139" />
 
         <ImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/avatarimg"
             android:layout_width="113dp"
             android:layout_height="113dp"
             android:layout_marginStart="4dp"

@@ -1,23 +1,18 @@
 package com.alanf.dontbesad;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alanf.dontbesad.databinding.ActivityMainBinding;
 
-import java.util.logging.Logger;
-
 public class MainActivity extends Activity {
     private ActivityMainBinding binding;
-    private ImageButton settings,start,sthap,addimage;
+    private ImageButton settings,start,sthap,modifyphrases;
     private SharedPreferences prefs;
     private AppManager apm;
 
@@ -51,31 +46,23 @@ public class MainActivity extends Activity {
                 Toast.makeText(getApplicationContext(),"Detenido",Toast.LENGTH_LONG).show();
             }
         });
-        addimage = findViewById(R.id.addimagebutton);
-        addimage.setOnClickListener(new View.OnClickListener() {
+        modifyphrases = findViewById(R.id.addphrasebutton);
+        modifyphrases.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openFile();
+                startActivity(new Intent(getApplicationContext(),Frases.class));
             }
         });
         prefs = getSharedPreferences("prefs",0);
         apm.setPrefs(prefs);
         startClocks();
         if (prefs.getBoolean("fr", false)) {
-            Toast.makeText(getApplicationContext(), "Abierto anteriormente", Toast.LENGTH_SHORT).show();
             apm.setMuted(prefs.getBoolean("mtd",false));
         } else {
-            Toast.makeText(getApplicationContext(), "Primera vez abierto", Toast.LENGTH_SHORT).show();
             prefs.edit().putBoolean("fr",true).apply();
             prefs.edit().putBoolean("mtd",false).apply();
             apm.setMuted(false);
         }
-    }
-    public void openFile(){
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("application/pdf");
-        startActivityForResult(intent,2);
     }
     public void startClocks(){
         apm.setReloj1Hora(prefs.getInt("h1",0));

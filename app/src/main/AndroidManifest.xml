@@ -25,9 +25,13 @@
             android:value="true" />
 
         <activity
+            android:name=".Frases"
+            android:exported="true"
+            android:label="@string/title_activity_frases"></activity>
+        <activity
             android:name=".clockset"
             android:exported="true"
-            android:label="@string/title_activity_clockset"></activity>
+            android:label="@string/title_activity_clockset" />
         <activity
             android:name=".AvatarFrame"
             android:exported="true"
