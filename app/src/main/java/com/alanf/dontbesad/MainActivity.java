@@ -19,13 +19,15 @@ public class MainActivity extends Activity {
     private ActivityMainBinding binding;
     private ImageButton settings,start,sthap,addimage;
     private SharedPreferences prefs;
+    private AppManager apm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        apm = AppManager.getAppManagerInstance();
+        apm.setSwitching(false);
         settings = findViewById(R.id.settingsbutton);
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,12 +59,16 @@ public class MainActivity extends Activity {
             }
         });
         prefs = getSharedPreferences("prefs",0);
+        apm.setPrefs(prefs);
+        startClocks();
         if (prefs.getBoolean("fr", false)) {
             Toast.makeText(getApplicationContext(), "Abierto anteriormente", Toast.LENGTH_SHORT).show();
-            prefs.edit().clear().apply();
+            apm.setMuted(prefs.getBoolean("mtd",false));
         } else {
             Toast.makeText(getApplicationContext(), "Primera vez abierto", Toast.LENGTH_SHORT).show();
             prefs.edit().putBoolean("fr",true).apply();
+            prefs.edit().putBoolean("mtd",false).apply();
+            apm.setMuted(false);
         }
     }
     public void openFile(){
@@ -70,5 +76,13 @@ public class MainActivity extends Activity {
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("application/pdf");
         startActivityForResult(intent,2);
+    }
+    public void startClocks(){
+        apm.setReloj1Hora(prefs.getInt("h1",0));
+        apm.setReloj1Minutos(prefs.getInt("m1",0));
+        apm.setReloj1AMPM(prefs.getBoolean("ampm1",false) ? 1:0);
+        apm.setReloj2Hora(prefs.getInt("h2",0));
+        apm.setReloj2Minutos(prefs.getInt("m2",0));
+        apm.setReloj2AMPM(prefs.getBoolean("ampm2",false) ? 1:0);
     }
 }
