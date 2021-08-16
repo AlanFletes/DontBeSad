@@ -58,12 +58,10 @@ public class MainActivity extends Activity {
                         Toast.makeText(getApplicationContext(),"Configure un intervalo de actividad valido en las configuraciones",Toast.LENGTH_SHORT).show();
                     }else{
                         if(ha==0){
-                            Toast.makeText(getApplicationContext(),"Alarma agregada por minutos",Toast.LENGTH_SHORT).show();
                             lastRun=true;
                             alarmManager.set(AlarmManager.RTC_WAKEUP,initt+(ma/2),pendingIntent);
                         }else{
                             long ela =0;
-                            Toast.makeText(getApplicationContext(),"Alarma agregada por horas",Toast.LENGTH_SHORT).show();
                             for(int i=0;i<rha;i++){
                                 alarmManager.set(AlarmManager.RTC_WAKEUP,initt+(ela+3600000),pendingIntent);
                             }
@@ -79,6 +77,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 apm.setWorking(false);
+                alarmManager.cancel(pendingIntent);
                 Toast.makeText(getApplicationContext(),"Detenido",Toast.LENGTH_LONG).show();
             }
         });
