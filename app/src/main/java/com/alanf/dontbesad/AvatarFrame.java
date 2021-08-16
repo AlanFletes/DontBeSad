@@ -46,6 +46,8 @@ public class AvatarFrame extends Activity {
         if (apm.getSwitching()) {
             if (apm.getObjs() == 1) {
                 swtch.setImageDrawable(getDrawable(R.drawable.avatarswh));
+            }else{
+                swtch.setImageDrawable(getDrawable(R.drawable.formatfont));
             }
             swtch.setVisibility(View.VISIBLE);
         } else {
@@ -95,6 +97,7 @@ public class AvatarFrame extends Activity {
             apm.setAvatar(apm.getPrefs().getInt("avatar",1));
             setAvatar(apm.getPrefs().getInt("avatar",1));
         }
+        txtFrase.setText(apm.getRandomFrase());
         speecher = new TextToSpeech(getApplicationContext(),new TextToSpeech.OnInitListener(){
            @Override
            public void onInit(int status){

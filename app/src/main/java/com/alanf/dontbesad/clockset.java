@@ -116,6 +116,8 @@ public class clockset extends Activity {
                     minutesactiv=m2-m1;
                     horasactv=hh2-hh1;
                     if(minutesactiv<0) {minutesactiv=60-(minutesactiv*-1); horasactv--;}
+                    apm.setHa(horasactv);
+                    apm.setMa(minutesactiv);
                     Toast.makeText(getApplicationContext(),"La app estará activa por " + horasactv + " horas y " + minutesactiv + " minutos.",Toast.LENGTH_SHORT).show();
                     finish();
                 }

@@ -4,15 +4,17 @@ import android.content.SharedPreferences;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 public class AppManager {
-    private boolean muted, switching;
+    private boolean muted, switching, working=false;
     private static AppManager instance;
-    private int objs, font,avatar;
+    private int objs, font,avatar, ha, ma,tr;
     private int relojes[][];
     private SharedPreferences prefs;
     private Set<String> frases;
+    private String[] frasess;
 
     private AppManager(){
         relojes = new int[2][3];
@@ -152,5 +154,47 @@ public class AppManager {
             }
         }
         prefs.edit().putStringSet("frases",set).apply();
+    }
+    public void updSFrases(){
+        frasess = recoverFrases();
+    }
+    public String getRandomFrase(){
+        updSFrases();
+        Random random = new Random();
+        if(frasess.length==0)return "Puedes agregar frases desde el menú de inicio!";
+        int indx = random.nextInt(frasess.length);
+        return frasess[indx];
+    }
+    public boolean getWorking(){
+        this.working=prefs.getBoolean("working",false);
+        return this.working;
+    }
+    public void setWorking(boolean working){
+        prefs.edit().putBoolean("working",working).apply();
+        this.working=working;
+    }
+    public void setHa(int ha){
+        prefs.edit().putInt("ha",ha).apply();
+        this.ha=ha;
+    }
+    public int getHa(){
+        this.ha=prefs.getInt("ha",0);
+        return this.ha;
+    }
+    public void setMa(int ma){
+        prefs.edit().putInt("ma",ma).apply();
+        this.ma = ma;
+    }
+    public int getMa(){
+        this.ma=prefs.getInt("ma",0);
+        return this.ma;
+    }
+    public void setTr(int tr){
+        prefs.edit().putInt("tr",tr);
+        this.tr=tr;
+    }
+    public int getTr(){
+        this.tr=prefs.getInt("tr",ha);
+        return this.tr;
     }
 }
