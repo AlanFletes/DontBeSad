@@ -34,8 +34,8 @@ public class clockset extends Activity {
         clckfn.setTypeface(font);
         clckin.setTypeface(font);
         apm = AppManager.getAppManagerInstance();
-        clckin.setText(String.format("%02d:%02d %s", apm.getReloj1Hora(), apm.getReloj1Minutos(), (apm.getReloj1AMPM() == 1 ? true : false) ? "PM" : "AM"));
-        clckfn.setText(String.format("%02d:%02d %s", apm.getReloj2Hora(), apm.getReloj2Minutos(), (apm.getReloj2AMPM() == 1 ? true : false) ? "PM" : "AM"));
+        clckin.setText(String.format("%02d:%02d %s", apm.getReloj1Hora(), apm.getReloj1Minutos(), (apm.getReloj1AMPM() == 1) ? "PM" : "AM"));
+        clckfn.setText(String.format("%02d:%02d %s", apm.getReloj2Hora(), apm.getReloj2Minutos(), (apm.getReloj2AMPM() == 1) ? "PM" : "AM"));
         clckin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,7 +54,7 @@ public class clockset extends Activity {
                         SharedPreferences prf = apm.getPrefs();
                         prf.edit().putInt("h1",hour).apply();
                         prf.edit().putInt("m1",minute).apply();
-                        prf.edit().putBoolean("ampm1",isPM ? true:false).apply();
+                        prf.edit().putBoolean("ampm1", isPM).apply();
                         clckin.setText(String.format("%02d:%02d %s", hour, minute, isPM ? "PM" : "AM"));
                     }
                 }).show();
@@ -78,7 +78,7 @@ public class clockset extends Activity {
                         SharedPreferences prf = apm.getPrefs();
                         prf.edit().putInt("h2",hour).apply();
                         prf.edit().putInt("m2",minute).apply();
-                        prf.edit().putBoolean("ampm2",isPM ? true:false).apply();
+                        prf.edit().putBoolean("ampm2", isPM).apply();
                         clckfn.setText(String.format("%02d:%02d %s", hour, minute, isPM ? "PM" : "AM"));
                     }
                 }).show();

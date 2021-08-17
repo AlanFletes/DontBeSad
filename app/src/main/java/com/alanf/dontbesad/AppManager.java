@@ -11,7 +11,7 @@ public class AppManager {
     private boolean muted, switching, working=false;
     private static AppManager instance;
     private int objs, font,avatar, ha, ma,tr;
-    private int relojes[][];
+    private int[][] relojes;
     private SharedPreferences prefs;
     private Set<String> frases;
     private String[] frasess;
